@@ -1,0 +1,9 @@
+#board {
+  background-color: red;
+  width: 600px;
+  height: 600px;
+  border: 1px solid white;
+}
+body {
+  background-color: black;
+}
