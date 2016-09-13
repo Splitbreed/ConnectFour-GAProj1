@@ -1,46 +1,66 @@
 #board {
-  background-color: red;
+  background-color: #6399a3;
   width: 45vmax;
   height: 45vmax;
-  border: 1px solid white;
+  border: 1px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  display: flex;
 }
 body {
-  background-color: black;
-  color: white;
+  background-color: #382423;
+  color: #c5d2d8;
 }
 .asideRight {
   float: right;
   display: flex;
   flex-direction: column;
+  order: 20;
 }
 aside {
-  height: 80vh;
-  width: 500px;
+  height: 80vmin;
+  width: 45vmax;
+  flex-direction: row-reverse;
 }
 #reset {
   font-size: 20px;
   padding: 10px;
-  background-color: purple;
-  color: white;
+  background-color: #6399a3;
+  color: #c5d2d8;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
   text-align: center;
+  padding-left: 40%;
+  font-family: Oswald, cursive;
 }
 .column {
   border: 1px black solid;
   width: 6.42857142857vmax;
   height: 45vmax;
-  float: left;
+  display: block;
+  flex-direction: row;
   box-sizing: border-box;
 }
 .row {
-  background-color: orange;
+  background-color: #105461;
   border: 1px white solid;
   box-sizing: border-box;
   height: 7.5vmax;
   width: 6.42857142857vmax;
+  display: block;
 }
 h1, h2, h3 {
   flex-grow: 1;
+}
+h1 {
+  font-size: 60px;
+  font-weight: 1000;
+  font-family: "Yatra One", cursive;
+}
+h2, h3 {
+  font-family: "Concert One", cursive;
+}
+footer {
+  font-family: Oswald, cursive;
 }
