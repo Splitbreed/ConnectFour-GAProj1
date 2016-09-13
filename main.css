@@ -6,6 +6,7 @@
   border-right: 3px solid black;
   border-bottom: 3px solid black;
   display: flex;
+  box-shadow: 3px 3px rgba(0,0,0,.5);
 }
 body {
   background-color: #382423;
@@ -35,7 +36,6 @@ aside {
   font-family: Oswald, cursive;
 }
 .column {
-  border: 1px black solid;
   width: 6.42857142857vmax;
   height: 43.9vmax;
   display: block;
@@ -50,6 +50,7 @@ aside {
   width: 6.42857142857vmax;
   display: block;
   border-radius: 50%;
+  box-shadow: 2.5px 2.5px rgba(0,0,0,.5);
 }
 .centralRow {
   margin-top: 1.07142857143vmax;
@@ -72,8 +73,10 @@ footer {
 .black {
   background-color: black;
   border-radius: 50%;
+  border: 1px solid white;
 }
 .white {
   background-color: white;
   border-radius: 50%;
+  border: 1px solid black;
 }

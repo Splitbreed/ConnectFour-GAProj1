@@ -15,7 +15,6 @@ var App = {
         } else if (currentPlayer === false){
           $(thisRows[k]).addClass('black');
           currentPlayer = !currentPlayer;
-          return;
         }
       }
     }
@@ -39,11 +38,15 @@ var UI = {
       }
       $('#board').append(columns);
     } //endFor
-  } //endCreateColumns
+  }, //endCreateColumns
+  clearBoard: function() {
+    $('.row').removeClass('black white');
+  }
 } //endUI
 
 
 window.onload = function() {
   UI.createColumns();
-  $('.column').on('click', App.dropPiece)
+  $('.column').on('click', App.dropPiece);
+  $('#reset').on('click', UI.clearBoard);
 }
