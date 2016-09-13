@@ -1,9 +1,46 @@
 #board {
   background-color: red;
-  width: 600px;
-  height: 600px;
+  width: 45vmax;
+  height: 45vmax;
   border: 1px solid white;
 }
 body {
   background-color: black;
+  color: white;
+}
+.asideRight {
+  float: right;
+  display: flex;
+  flex-direction: column;
+}
+aside {
+  height: 80vh;
+  width: 500px;
+}
+#reset {
+  font-size: 20px;
+  padding: 10px;
+  background-color: purple;
+  color: white;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  text-align: center;
+}
+.column {
+  border: 1px black solid;
+  width: 6.42857142857vmax;
+  height: 45vmax;
+  float: left;
+  box-sizing: border-box;
+}
+.row {
+  background-color: orange;
+  border: 1px white solid;
+  box-sizing: border-box;
+  height: 7.5vmax;
+  width: 6.42857142857vmax;
+}
+h1, h2, h3 {
+  flex-grow: 1;
 }
