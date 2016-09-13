@@ -46,7 +46,7 @@ aside {
   background-color: #105461;
   border: 1px white solid;
   box-sizing: border-box;
-  height: 7.5vmax;
+  height: 6.42857142857vmax;
   width: 6.42857142857vmax;
   display: block;
 }
@@ -63,4 +63,8 @@ h2, h3 {
 }
 footer {
   font-family: Oswald, cursive;
+}
+#col1row1 {
+  background-color: black;
+  border-radius: 50%;
 }
