@@ -80,3 +80,9 @@ footer {
   border-radius: 50%;
   border: 1px solid black;
 }
+.turnWhite {
+  color: white;
+}
+.turnBlack {
+  color: black;
+}
