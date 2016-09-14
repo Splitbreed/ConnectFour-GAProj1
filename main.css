@@ -23,7 +23,7 @@ aside {
   width: 45vmax;
   flex-direction: row-reverse;
 }
-#reset {
+#reset, #playAI {
   font-size: 20px;
   padding: 10px;
   background-color: #6399a3;

@@ -1,5 +1,7 @@
 var currentPlayer = true;
 var playable = [];
+var whiteWins = 0;
+var blackWins = 0;
 var App = {
   dropPieceWhite: function() {
     $(playable[0]).addClass('white');
@@ -29,7 +31,21 @@ var App = {
       } //end else
     } //end for
     return playable;
-  } //end isPlayable
+  }, //end isPlayable
+  checkWins: function(current) {
+    var areThereWins;
+    var leftWin = UI.checkLeft();
+    var rightWin = UI.checkRight();
+    var upWin = UI.checkUp();
+    var downWin = UI.checkDown();
+    if (leftWin === true || rightWin  === true || upWin === true || downWin  === true) {
+      UI.winner(!currentPlayer);
+    } //end if
+  }, //end checkWins
+  overall: function() {
+    var total = $('#board').children();
+    return total;
+  }
 } //end App
 var UI = {
   createColumns: function() {
@@ -52,9 +68,13 @@ var UI = {
   }, //endCreateColumns
   clearBoard: function() {
     $('.row').removeClass('black white');
+    $('#turn').removeClass('turnBlack turnWhite');
+    $('#turn').text('White');
+    currentPlayer = true;
   }, //end clearBoard
   playGame: function() {
     var thisRows = $(this).find('.row');
+    var currCol = this;
     App.isPlayable(thisRows);
     // console.log(playable);
     // console.log(playable.length);
@@ -63,6 +83,7 @@ var UI = {
     } else if (playable.length > 0 && currentPlayer === false) {
       App.dropPieceBlack();
     } //end else if
+    App.checkWins();
   }, //end playGame
   changeTurn: function() {
     if (currentPlayer === true) {
@@ -73,13 +94,50 @@ var UI = {
       $('#turn').text('Black');
       $('#turn').removeClass('turnWhite');
       $('#turn').addClass('turnBlack');
-    }
-  }
-} //endUI
+    } //end else if
+  }, //end changeTurn
+  buildUI: function() {
+    $('#scoreWhite').text(whiteWins);
+    $('#scoreBlack').text(blackWins);
+    $('#turn').addClass('turnWhite');
+    $('#turn').text('White');
+  }, //end buildUI
+  checkLeft: function() {
+    var winArray = [];
+    var colCheck = App.overall();
+    for (var z = 0; z < colCheck.length; z++) {
+      var rowCheck = $(colCheck[z]).children();
+      for (var y = 0; y < rowCheck.length; y++) {
+        if
+      } //end interior for
+    } //end exterior for
+  }, //end leftWin
+  checkRight: function() {
+
+  }, //end rightWin
+  checkUp: function() {
+
+  }, //end upWin
+  checkDown: function() {
+
+  }, //end downWin
+  winner: function(winner) {
+    var winnerActual;
+    if (winner === true) {
+      winnerActual = 'White';
+      whiteWins++;
+    } else if (winner === false) {
+      winnerActual = 'Black';
+      blackWins++;
+    } //end if
+    alert(winnerActual + " has won the game!!");
+  } //end winner
+} //end UI
 
 
 window.onload = function() {
   UI.createColumns();
+  UI.buildUI();
   $('.column').on('click', UI.playGame);
   $('#reset').on('click', UI.clearBoard);
 }
