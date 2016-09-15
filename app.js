@@ -81,6 +81,7 @@ var UI = {
     $('#turn').removeClass('turnBlack turnWhite');
     $('#turn').text('White');
     currentPlayer = true;
+    $('.column').off()
     $('#winnerSpan').css('display', 'none');
     $('.column').on('click', UI.playGame);
   }, //end clearBoard
@@ -225,13 +226,26 @@ var UI = {
     }
 
     var toCheckUpRight = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckUpRightNum = toCheckUpRight.map(Number);
+
     var startUpRight = $('#column' + toCheckUpRightNum[0] + 'row' + toCheckUpRightNum[1]).hasClass(classCheck);
+
     var startUpRight1 = $('#column' + (toCheckUpRightNum[0]+1) + 'row' + (toCheckUpRightNum[1]-1)).hasClass(classCheck);
+
     var startUpRight2 = $('#column' + (toCheckUpRightNum[0]+2) + 'row' + (toCheckUpRightNum[1]-2)).hasClass(classCheck);
+
     var startUpRight3 = $('#column' + (toCheckUpRightNum[0]+3) + 'row' + (toCheckUpRightNum[1]-3)).hasClass(classCheck);
 
+    var centCheckRight = $('#column' + (toCheckUpRightNum[0]-1) + 'row' + (toCheckUpRightNum[1]+1)).hasClass(classCheck);
+
+    var centCheckRight1 = $('#column' + (toCheckUpRightNum[0]-2) + 'row' + (toCheckUpRightNum[1]+2)).hasClass(classCheck);
+
     if (startUpRight1 === true && startUpRight === true && startUpRight2 === true && startUpRight3 === true) {
+      return true;
+    } else if (startUpRight === true && startUpRight1 === true && centCheckRight === true && centCheckRight1 === true) {
+      return true;
+    } else if (startUpRight === true && startUpRight1 === true && startUpRight2 === true && centCheckRight === true) {
       return true;
     }
   }, //end checkUpRight
@@ -244,13 +258,26 @@ var UI = {
     }
 
     var toCheckUpLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckUpLeftNum = toCheckUpLeft.map(Number);
+
     var startUpLeft = $('#column' + toCheckUpLeftNum[0] + 'row' + toCheckUpLeftNum[1]).hasClass(classCheck);
+
     var startUpLeft1 = $('#column' + (toCheckUpLeftNum[0]-1) + 'row' + (toCheckUpLeftNum[1]-1)).hasClass(classCheck);
+
     var startUpLeft2 = $('#column' + (toCheckUpLeftNum[0]-2) + 'row' + (toCheckUpLeftNum[1]-2)).hasClass(classCheck);
+
     var startUpLeft3 = $('#column' + (toCheckUpLeftNum[0]-3) + 'row' + (toCheckUpLeftNum[1]-3)).hasClass(classCheck);
-    
+
+    var centCheckLeft = $('#column' + (toCheckUpLeftNum[0]+1) + 'row' + (toCheckUpLeftNum[1]+1)).hasClass(classCheck);
+
+    var centCheckLeft1 = $('#column' + (toCheckUpLeftNum[0]+2) + 'row' + (toCheckUpLeftNum[1]+2)).hasClass(classCheck);
+
     if (startUpLeft1 === true && startUpLeft === true && startUpLeft2 === true && startUpLeft3 === true) {
+      return true;
+    } else if (startUpLeft === true && startUpLeft1 === true && centCheckLeft1 === true && centCheckLeft === true) {
+      return true;
+    } else if (startUpLeft === true && startUpLeft1 === true && startUpLeft2 === true && centCheckLeft === true) {
       return true;
     }
   }, //end checkUpLeft
