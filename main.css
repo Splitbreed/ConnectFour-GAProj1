@@ -86,6 +86,6 @@ footer {
 .turnBlack {
   color: black;
 }
-.highlight {
-  border: 2px solid white;
+#winnerSpan {
+  display: none;
 }

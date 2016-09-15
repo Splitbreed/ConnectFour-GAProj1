@@ -20,7 +20,7 @@ var App = {
   isPlayable: function(whichCol) {
     playable = [];
     for (var k = 5; k >= 0; k--) {
-      // console.log(playable);
+      // (playable);
       // console.log(whichCol);
       var isBlack = $(whichCol[k]).hasClass('black');
       // console.log(isBlack);
@@ -39,9 +39,12 @@ var App = {
   checkWins: function(current) {
     var leftWin = UI.checkLeft(current);
     var rightWin = UI.checkRight(current);
-    var upWin = UI.checkUp(current);
     var downWin = UI.checkDown(current);
-    if (leftWin === true || rightWin  === true || upWin === true || downWin  === true) {
+    var downRightWin = UI.checkDownRight(current);
+    var downLeftWin = UI.checkDownLeft(current);
+    var upRightWin = UI.checkUpRight(current);
+    var upLeftWin = UI.checkUpLeft(current);
+    if (leftWin === true || rightWin  === true || downWin  === true || downRightWin === true || downLeftWin === true || upLeftWin === true || upRightWin === true) {
       UI.winner(!currentPlayer);
     } //end if
   }, //end checkWins
@@ -71,6 +74,8 @@ var UI = {
     $('#turn').removeClass('turnBlack turnWhite');
     $('#turn').text('White');
     currentPlayer = true;
+    $('#winnerSpan').css('display', 'none');
+    $('.column').on('click', UI.playGame);
   }, //end clearBoard
   playGame: function() {
     var thisRows = $(this).find('.row');
@@ -112,33 +117,125 @@ var UI = {
     var toCheckLeftNum = toCheckLeft.map(Number);
     var startLeft = $('#column' + toCheckLeftNum[0] + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
     var startLeft1 = $('#column' + (toCheckLeftNum[0]-1) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
-    console.log($('#column' + (toCheckLeftNum[0]-1) + 'row' + toCheckLeftNum[1]))
     var startLeft2 = $('#column' + (toCheckLeftNum[0]-2) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
     var startLeft3 = $('#column' + (toCheckLeftNum[0]-3) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
-    console.log(startLeft);
-    console.log(startLeft1);
-    console.log(startLeft2);
-    console.log(startLeft3);
+    if (startLeft1 === true && startLeft === true && startLeft2 === true && startLeft3 === true) {
+      return true;
+    }
   }, //end checkLeft
   checkRight: function(thisCol) {
-
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
+    var toCheckRight = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckRightNum = toCheckRight.map(Number);
+    var startRight = $('#column' + toCheckRightNum[0] + 'row' + toCheckRightNum[1]).hasClass(classCheck);
+    var startRight1 = $('#column' + (toCheckRightNum[0]+1) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
+    var startRight2 = $('#column' + (toCheckRightNum[0]+2) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
+    var startRight3 = $('#column' + (toCheckRightNum[0]+3) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
+    if (startRight1 === true && startRight === true && startRight2 === true && startRight3 === true) {
+      return true;
+    }
   }, //end checkRight
-  checkUp: function(thisCol) {
-
-  }, //end checkUp
   checkDown: function(thisCol) {
-
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
+    var toCheckDown = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckDownNum = toCheckDown.map(Number);
+    var startDown = $('#column' + toCheckDownNum[0] + 'row' + toCheckDownNum[1]).hasClass(classCheck);
+    var startDown1 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+1)).hasClass(classCheck);
+    var startDown2 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+2)).hasClass(classCheck);
+    var startDown3 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+3)).hasClass(classCheck);
+    if (startDown1 === true && startDown === true && startDown2 === true && startDown3 === true) {
+      return true;
+    }
   }, //end checkDown
+  checkDownRight: function(thisCol) {
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
+    var toCheckDownRight = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckDownRightNum = toCheckDownRight.map(Number);
+    var startDownRight = $('#column' + toCheckDownRightNum[0] + 'row' + toCheckDownRightNum[1]).hasClass(classCheck);
+    var startDownRight1 = $('#column' + (toCheckDownRightNum[0]+1) + 'row' + (toCheckDownRightNum[1]+1)).hasClass(classCheck);
+    var startDownRight2 = $('#column' + (toCheckDownRightNum[0]+2) + 'row' + (toCheckDownRightNum[1]+2)).hasClass(classCheck);
+    var startDownRight3 = $('#column' + (toCheckDownRightNum[0]+3) + 'row' + (toCheckDownRightNum[1]+3)).hasClass(classCheck);
+    if (startDownRight1 === true && startDownRight === true && startDownRight2 === true && startDownRight3 === true) {
+      return true;
+    }
+  }, //end checkDownRight
+  checkDownLeft: function(thisCol) {
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
+    var toCheckDownLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckDownLeftNum = toCheckDownLeft.map(Number);
+    var startDownLeft = $('#column' + toCheckDownLeftNum[0] + 'row' + toCheckDownLeftNum[1]).hasClass(classCheck);
+    var startDownLeft1 = $('#column' + (toCheckDownLeftNum[0]-1) + 'row' + (toCheckDownLeftNum[1]+1)).hasClass(classCheck);
+    var startDownLeft2 = $('#column' + (toCheckDownLeftNum[0]-2) + 'row' + (toCheckDownLeftNum[1]+2)).hasClass(classCheck);
+    var startDownLeft3 = $('#column' + (toCheckDownLeftNum[0]-3) + 'row' + (toCheckDownLeftNum[1]+3)).hasClass(classCheck);
+    if (startDownLeft1 === true && startDownLeft === true && startDownLeft2 === true && startDownLeft3 === true) {
+      return true;
+    }
+  }, //end checkDownLeft
+  checkUpRight: function(thisCol) {
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
+    var toCheckUpRight = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckUpRightNum = toCheckUpRight.map(Number);
+    var startUpRight = $('#column' + toCheckUpRightNum[0] + 'row' + toCheckUpRightNum[1]).hasClass(classCheck);
+    var startUpRight1 = $('#column' + (toCheckUpRightNum[0]+1) + 'row' + (toCheckUpRightNum[1]-1)).hasClass(classCheck);
+    var startUpRight2 = $('#column' + (toCheckUpRightNum[0]+2) + 'row' + (toCheckUpRightNum[1]-2)).hasClass(classCheck);
+    var startUpRight3 = $('#column' + (toCheckUpRightNum[0]+3) + 'row' + (toCheckUpRightNum[1]-3)).hasClass(classCheck);
+    if (startUpRight1 === true && startUpRight === true && startUpRight2 === true && startUpRight3 === true) {
+      return true;
+    }
+  }, //end checkUpRight
+  checkUpLeft: function(thisCol) {
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
+    var toCheckUpLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckUpLeftNum = toCheckUpLeft.map(Number);
+    var startUpLeft = $('#column' + toCheckUpLeftNum[0] + 'row' + toCheckUpLeftNum[1]).hasClass(classCheck);
+    var startUpLeft1 = $('#column' + (toCheckUpLeftNum[0]-1) + 'row' + (toCheckUpLeftNum[1]-1)).hasClass(classCheck);
+    var startUpLeft2 = $('#column' + (toCheckUpLeftNum[0]-2) + 'row' + (toCheckUpLeftNum[1]-2)).hasClass(classCheck);
+    var startUpLeft3 = $('#column' + (toCheckUpLeftNum[0]-3) + 'row' + (toCheckUpLeftNum[1]-3)).hasClass(classCheck);
+    if (startUpLeft1 === true && startUpLeft === true && startUpLeft2 === true && startUpLeft3 === true) {
+      return true;
+    }
+  }, //end checkUpLeft
   winner: function(winner) {
     var winnerActual;
     if (winner === true) {
       winnerActual = 'White';
       whiteWins++;
+      var winnerColor = 'white';
     } else if (winner === false) {
       winnerActual = 'Black';
       blackWins++;
+      var winnerColor = 'black';
     } //end if
-    alert(winnerActual + " has won the game!!");
+    $('#winnerText').text(winnerActual);
+    $('#winnerSpan').css('display', 'inline-block');
+    $('#winnerText').css('color', winnerColor);
+    $('#scoreWhite').text(whiteWins);
+    $('#scoreBlack').text(blackWins);
+    $('.column').off();
   } //end winner
 } //end UI
 
