@@ -3,6 +3,7 @@ var mostRecent;
 var playable = [];
 var whiteWins = 0;
 var blackWins = 0;
+var classCheck;
 var App = {
   dropPieceWhite: function() {
     $(playable[0]).addClass('white');
@@ -102,9 +103,22 @@ var UI = {
     $('#turn').text('White');
   }, //end buildUI
   checkLeft: function(thisCol) {
+    if (currentPlayer === false) {
+      classCheck = 'white';
+    } else if (currentPlayer === true) {
+      classCheck = 'black';
+    }
     var toCheckLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
     var toCheckLeftNum = toCheckLeft.map(Number);
-    console.log($('#column' + toCheckLeftNum[0] + 'row' + toCheckLeftNum[1]).hasClass('white'));
+    var startLeft = $('#column' + toCheckLeftNum[0] + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
+    var startLeft1 = $('#column' + (toCheckLeftNum[0]-1) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
+    console.log($('#column' + (toCheckLeftNum[0]-1) + 'row' + toCheckLeftNum[1]))
+    var startLeft2 = $('#column' + (toCheckLeftNum[0]-2) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
+    var startLeft3 = $('#column' + (toCheckLeftNum[0]-3) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
+    console.log(startLeft);
+    console.log(startLeft1);
+    console.log(startLeft2);
+    console.log(startLeft3);
   }, //end checkLeft
   checkRight: function(thisCol) {
 
