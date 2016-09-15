@@ -1,15 +1,18 @@
 var currentPlayer = true;
+var mostRecent;
 var playable = [];
 var whiteWins = 0;
 var blackWins = 0;
 var App = {
   dropPieceWhite: function() {
     $(playable[0]).addClass('white');
+    mostRecent = playable[0];
     currentPlayer = !currentPlayer;
     UI.changeTurn();
   }, //end dropPiece
   dropPieceBlack: function() {
     $(playable[0]).addClass('black');
+    mostRecent = playable[0];
     currentPlayer = !currentPlayer;
     UI.changeTurn();
   }, //end dropPieceBlack
@@ -33,11 +36,10 @@ var App = {
     return playable;
   }, //end isPlayable
   checkWins: function(current) {
-    var areThereWins;
-    var leftWin = UI.checkLeft();
-    var rightWin = UI.checkRight();
-    var upWin = UI.checkUp();
-    var downWin = UI.checkDown();
+    var leftWin = UI.checkLeft(current);
+    var rightWin = UI.checkRight(current);
+    var upWin = UI.checkUp(current);
+    var downWin = UI.checkDown(current);
     if (leftWin === true || rightWin  === true || upWin === true || downWin  === true) {
       UI.winner(!currentPlayer);
     } //end if
@@ -49,16 +51,13 @@ var App = {
 } //end App
 var UI = {
   createColumns: function() {
-    for (var i = 0; i < 7; i++) {
-      var columns = $('<div>');
+    for (var i = 1; i < 8; i++) {
+      var columns = $('<div id=column' + i + '></div>');
       columns.addClass('column');
-      if(i > 0 && i < 6){
-        columns.addClass('centralColumn')
-      }
-      for (var j = 0; j < 6; j++) {
-        var rows = $('<div>');
+      for (var j = 1; j < 7; j++) {
+        var rows = $('<div id=column' + i + 'row' + j + '></div>');
         rows.addClass('row');
-        if (j > 0 && j < 5) {
+        if (j > 1 && j < 6) {
           rows.addClass('centralRow');
         }
         columns.append(rows);
@@ -83,7 +82,7 @@ var UI = {
     } else if (playable.length > 0 && currentPlayer === false) {
       App.dropPieceBlack();
     } //end else if
-    App.checkWins();
+    App.checkWins(currCol);
   }, //end playGame
   changeTurn: function() {
     if (currentPlayer === true) {
@@ -102,25 +101,20 @@ var UI = {
     $('#turn').addClass('turnWhite');
     $('#turn').text('White');
   }, //end buildUI
-  checkLeft: function() {
-    var winArray = [];
-    var colCheck = App.overall();
-    for (var z = 0; z < colCheck.length; z++) {
-      var rowCheck = $(colCheck[z]).children();
-      for (var y = 0; y < rowCheck.length; y++) {
-        if
-      } //end interior for
-    } //end exterior for
-  }, //end leftWin
-  checkRight: function() {
+  checkLeft: function(thisCol) {
+    var toCheckLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+    var toCheckLeftNum = toCheckLeft.map(Number);
+    console.log($('#column' + toCheckLeftNum[0] + 'row' + toCheckLeftNum[1]).hasClass('white'));
+  }, //end checkLeft
+  checkRight: function(thisCol) {
 
-  }, //end rightWin
-  checkUp: function() {
+  }, //end checkRight
+  checkUp: function(thisCol) {
 
-  }, //end upWin
-  checkDown: function() {
+  }, //end checkUp
+  checkDown: function(thisCol) {
 
-  }, //end downWin
+  }, //end checkDown
   winner: function(winner) {
     var winnerActual;
     if (winner === true) {
