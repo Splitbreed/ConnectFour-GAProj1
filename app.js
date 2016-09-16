@@ -9,6 +9,7 @@ var App = {
 
   dropPieceWhite: function() {
     $(playable[0]).addClass('white');
+    $(playable[0]).slideDown(600);
     mostRecent = playable[0];
     currentPlayer = !currentPlayer;
     UI.changeTurn();
@@ -16,6 +17,7 @@ var App = {
 
   dropPieceBlack: function() {
     $(playable[0]).addClass('black');
+    $(playable[0]).slideDown();
     mostRecent = playable[0];
     currentPlayer = !currentPlayer;
     UI.changeTurn();
@@ -125,11 +127,23 @@ var UI = {
     }
 
     var toCheckLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckLeftNum = toCheckLeft.map(Number);
-    var startLeft = $('#column' + toCheckLeftNum[0] + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
-    var startLeft1 = $('#column' + (toCheckLeftNum[0]-1) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
-    var startLeft2 = $('#column' + (toCheckLeftNum[0]-2) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
-    var startLeft3 = $('#column' + (toCheckLeftNum[0]-3) + 'row' + toCheckLeftNum[1]).hasClass(classCheck);
+
+
+    var checkLeft1 =  $('#column' + toCheckLeftNum[0] + 'row' + toCheckLeftNum[1]);
+
+    var checkLeft2 = $('#column' + (toCheckLeftNum[0]-1) + 'row' + toCheckLeftNum[1]);
+
+    var checkLeft3 = $('#column' + (toCheckLeftNum[0]-2) + 'row' + toCheckLeftNum[1]);
+
+    var checkLeft4 = $('#column' + (toCheckLeftNum[0]-3) + 'row' + toCheckLeftNum[1]);
+
+
+    var startLeft = checkLeft1.hasClass(classCheck);
+    var startLeft1 = checkLeft2.hasClass(classCheck);
+    var startLeft2 = checkLeft3.hasClass(classCheck);
+    var startLeft3 = checkLeft4.hasClass(classCheck);
 
     if (startLeft1 === true && startLeft === true && startLeft2 === true && startLeft3 === true) {
       return true;
@@ -144,13 +158,29 @@ var UI = {
     }
 
     var toCheckRight = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckRightNum = toCheckRight.map(Number);
-    var startRight = $('#column' + toCheckRightNum[0] + 'row' + toCheckRightNum[1]).hasClass(classCheck);
-    var startRight1 = $('#column' + (toCheckRightNum[0]+1) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
-    var startRight2 = $('#column' + (toCheckRightNum[0]+2) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
-    var startRight3 = $('#column' + (toCheckRightNum[0]+3) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
-    var horzCheck = $('#column' + (toCheckRightNum[0]-1) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
-    var horzCheck2 = $('#column' + (toCheckRightNum[0]-2) + 'row' + toCheckRightNum[1]).hasClass(classCheck);
+
+
+    var checkRight1 = $('#column' + toCheckRightNum[0] + 'row' + toCheckRightNum[1]);
+
+    var checkRight2 = $('#column' + (toCheckRightNum[0]+1) + 'row' + toCheckRightNum[1]);
+
+    var checkRight3 = $('#column' + (toCheckRightNum[0]+2) + 'row' + toCheckRightNum[1]);
+
+    var checkRight4 = $('#column' + (toCheckRightNum[0]+3) + 'row' + toCheckRightNum[1]);
+
+    var checkHorz1 = $('#column' + (toCheckRightNum[0]-1) + 'row' + toCheckRightNum[1]);
+
+    var checkHorz2 = $('#column' + (toCheckRightNum[0]-2) + 'row' + toCheckRightNum[1]);
+
+
+    var startRight = checkRight1.hasClass(classCheck);
+    var startRight1 = checkRight2.hasClass(classCheck);
+    var startRight2 = checkRight3.hasClass(classCheck);
+    var startRight3 = checkRight4.hasClass(classCheck);
+    var horzCheck = checkHorz1.hasClass(classCheck);
+    var horzCheck2 = checkHorz2.hasClass(classCheck);
 
     if (startRight1 === true && startRight === true && startRight2 === true && startRight3 === true) {
       return true;
@@ -169,11 +199,23 @@ var UI = {
     }
 
     var toCheckDown = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckDownNum = toCheckDown.map(Number);
-    var startDown = $('#column' + toCheckDownNum[0] + 'row' + toCheckDownNum[1]).hasClass(classCheck);
-    var startDown1 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+1)).hasClass(classCheck);
-    var startDown2 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+2)).hasClass(classCheck);
-    var startDown3 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+3)).hasClass(classCheck);
+
+
+    var checkDown1 = $('#column' + toCheckDownNum[0] + 'row' + toCheckDownNum[1]);
+
+    var checkDown2 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+1));
+
+    var checkDown3 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+2));
+
+    var checkDown4 = $('#column' + (toCheckDownNum[0]) + 'row' + (toCheckDownNum[1]+3));
+
+
+    var startDown = checkDown1.hasClass(classCheck);
+    var startDown1 = checkDown2.hasClass(classCheck);
+    var startDown2 = checkDown3.hasClass(classCheck);
+    var startDown3 = checkDown4.hasClass(classCheck);
 
     if (startDown1 === true && startDown === true && startDown2 === true && startDown3 === true) {
       return true;
@@ -188,11 +230,23 @@ var UI = {
     }
 
     var toCheckDownRight = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckDownRightNum = toCheckDownRight.map(Number);
-    var startDownRight = $('#column' + toCheckDownRightNum[0] + 'row' + toCheckDownRightNum[1]).hasClass(classCheck);
-    var startDownRight1 = $('#column' + (toCheckDownRightNum[0]+1) + 'row' + (toCheckDownRightNum[1]+1)).hasClass(classCheck);
-    var startDownRight2 = $('#column' + (toCheckDownRightNum[0]+2) + 'row' + (toCheckDownRightNum[1]+2)).hasClass(classCheck);
-    var startDownRight3 = $('#column' + (toCheckDownRightNum[0]+3) + 'row' + (toCheckDownRightNum[1]+3)).hasClass(classCheck);
+
+
+    var checkDownRight1 = $('#column' + toCheckDownRightNum[0] + 'row' + toCheckDownRightNum[1]);
+
+    var checkDownRight2 = $('#column' + (toCheckDownRightNum[0]+1) + 'row' + (toCheckDownRightNum[1]+1))
+
+    var checkDownRight3 = $('#column' + (toCheckDownRightNum[0]+2) + 'row' + (toCheckDownRightNum[1]+2));
+
+    var checkDownRight4 = $('#column' + (toCheckDownRightNum[0]+3) + 'row' + (toCheckDownRightNum[1]+3));
+
+
+    var startDownRight = checkDownRight1.hasClass(classCheck);
+    var startDownRight1 = checkDownRight2.hasClass(classCheck);
+    var startDownRight2 = checkDownRight3.hasClass(classCheck);
+    var startDownRight3 = checkDownRight4.hasClass(classCheck);
 
     if (startDownRight1 === true && startDownRight === true && startDownRight2 === true && startDownRight3 === true) {
       return true;
@@ -207,11 +261,23 @@ var UI = {
     }
 
     var toCheckDownLeft = $(mostRecent).attr('id').replace(/\D/g,'').split('');
+
     var toCheckDownLeftNum = toCheckDownLeft.map(Number);
-    var startDownLeft = $('#column' + toCheckDownLeftNum[0] + 'row' + toCheckDownLeftNum[1]).hasClass(classCheck);
-    var startDownLeft1 = $('#column' + (toCheckDownLeftNum[0]-1) + 'row' + (toCheckDownLeftNum[1]+1)).hasClass(classCheck);
-    var startDownLeft2 = $('#column' + (toCheckDownLeftNum[0]-2) + 'row' + (toCheckDownLeftNum[1]+2)).hasClass(classCheck);
-    var startDownLeft3 = $('#column' + (toCheckDownLeftNum[0]-3) + 'row' + (toCheckDownLeftNum[1]+3)).hasClass(classCheck);
+
+
+    var checkDownLeft1 = $('#column' + toCheckDownLeftNum[0] + 'row' + toCheckDownLeftNum[1]);
+
+    var checkDownLeft2 = $('#column' + (toCheckDownLeftNum[0]-1) + 'row' + (toCheckDownLeftNum[1]+1));
+
+    var checkDownLeft3 = $('#column' + (toCheckDownLeftNum[0]-2) + 'row' + (toCheckDownLeftNum[1]+2));
+
+    var checkDownLeft4 = $('#column' + (toCheckDownLeftNum[0]-3) + 'row' + (toCheckDownLeftNum[1]+3));
+
+
+    var startDownLeft = checkDownLeft1.hasClass(classCheck);
+    var startDownLeft1 = checkDownLeft2.hasClass(classCheck);
+    var startDownLeft2 = checkDownLeft3.hasClass(classCheck);
+    var startDownLeft3 = checkDownLeft4.hasClass(classCheck);
 
     if (startDownLeft1 === true && startDownLeft === true && startDownLeft2 === true && startDownLeft3 === true) {
       return true;
@@ -229,17 +295,26 @@ var UI = {
 
     var toCheckUpRightNum = toCheckUpRight.map(Number);
 
-    var startUpRight = $('#column' + toCheckUpRightNum[0] + 'row' + toCheckUpRightNum[1]).hasClass(classCheck);
 
-    var startUpRight1 = $('#column' + (toCheckUpRightNum[0]+1) + 'row' + (toCheckUpRightNum[1]-1)).hasClass(classCheck);
+    var checkUpRight1 = $('#column' + toCheckUpRightNum[0] + 'row' + toCheckUpRightNum[1]);
 
-    var startUpRight2 = $('#column' + (toCheckUpRightNum[0]+2) + 'row' + (toCheckUpRightNum[1]-2)).hasClass(classCheck);
+    var checkUpRight2 = $('#column' + (toCheckUpRightNum[0]+1) + 'row' + (toCheckUpRightNum[1]-1));
 
-    var startUpRight3 = $('#column' + (toCheckUpRightNum[0]+3) + 'row' + (toCheckUpRightNum[1]-3)).hasClass(classCheck);
+    var checkUpRight3 = $('#column' + (toCheckUpRightNum[0]+2) + 'row' + (toCheckUpRightNum[1]-2));
 
-    var centCheckRight = $('#column' + (toCheckUpRightNum[0]-1) + 'row' + (toCheckUpRightNum[1]+1)).hasClass(classCheck);
+    var checkUpRight4 = $('#column' + (toCheckUpRightNum[0]+3) + 'row' + (toCheckUpRightNum[1]-3));
 
-    var centCheckRight1 = $('#column' + (toCheckUpRightNum[0]-2) + 'row' + (toCheckUpRightNum[1]+2)).hasClass(classCheck);
+    var checkCentRight1 = $('#column' + (toCheckUpRightNum[0]-1) + 'row' + (toCheckUpRightNum[1]+1));
+
+    var checkCentRight2 = $('#column' + (toCheckUpRightNum[0]-2) + 'row' + (toCheckUpRightNum[1]+2));
+
+
+    var startUpRight = checkUpRight1.hasClass(classCheck);
+    var startUpRight1 = checkUpRight2.hasClass(classCheck);
+    var startUpRight2 = checkUpRight3.hasClass(classCheck);
+    var startUpRight3 = checkUpRight4.hasClass(classCheck);
+    var centCheckRight = checkCentRight1.hasClass(classCheck);
+    var centCheckRight1 = checkCentRight2.hasClass(classCheck);
 
     if (startUpRight1 === true && startUpRight === true && startUpRight2 === true && startUpRight3 === true) {
       return true;
@@ -261,17 +336,26 @@ var UI = {
 
     var toCheckUpLeftNum = toCheckUpLeft.map(Number);
 
-    var startUpLeft = $('#column' + toCheckUpLeftNum[0] + 'row' + toCheckUpLeftNum[1]).hasClass(classCheck);
 
-    var startUpLeft1 = $('#column' + (toCheckUpLeftNum[0]-1) + 'row' + (toCheckUpLeftNum[1]-1)).hasClass(classCheck);
+    var checkUpLeft1 = $('#column' + toCheckUpLeftNum[0] + 'row' + toCheckUpLeftNum[1]);
 
-    var startUpLeft2 = $('#column' + (toCheckUpLeftNum[0]-2) + 'row' + (toCheckUpLeftNum[1]-2)).hasClass(classCheck);
+    var checkUpLeft2 = $('#column' + (toCheckUpLeftNum[0]-1) + 'row' + (toCheckUpLeftNum[1]-1));
 
-    var startUpLeft3 = $('#column' + (toCheckUpLeftNum[0]-3) + 'row' + (toCheckUpLeftNum[1]-3)).hasClass(classCheck);
+    var checkUpLeft3 = $('#column' + (toCheckUpLeftNum[0]-2) + 'row' + (toCheckUpLeftNum[1]-2))
 
-    var centCheckLeft = $('#column' + (toCheckUpLeftNum[0]+1) + 'row' + (toCheckUpLeftNum[1]+1)).hasClass(classCheck);
+    var checkUpLeft4 = $('#column' + (toCheckUpLeftNum[0]-3) + 'row' + (toCheckUpLeftNum[1]-3));
 
-    var centCheckLeft1 = $('#column' + (toCheckUpLeftNum[0]+2) + 'row' + (toCheckUpLeftNum[1]+2)).hasClass(classCheck);
+    var checkCentLeft1 = $('#column' + (toCheckUpLeftNum[0]+1) + 'row' + (toCheckUpLeftNum[1]+1));
+
+    var checkCentLeft2 = $('#column' + (toCheckUpLeftNum[0]+2) + 'row' + (toCheckUpLeftNum[1]+2));
+
+
+    var startUpLeft = checkUpLeft1.hasClass(classCheck);
+    var startUpLeft1 = checkUpLeft2.hasClass(classCheck);
+    var startUpLeft2 = checkUpLeft3.hasClass(classCheck);
+    var startUpLeft3 = checkUpLeft4.hasClass(classCheck);
+    var centCheckLeft = checkCentLeft1.hasClass(classCheck);
+    var centCheckLeft1 = checkCentLeft2.hasClass(classCheck);
 
     if (startUpLeft1 === true && startUpLeft === true && startUpLeft2 === true && startUpLeft3 === true) {
       return true;
