@@ -9,7 +9,6 @@ var App = {
 
   dropPieceWhite: function() {
     $(playable[0]).addClass('white');
-    $(playable[0]).slideDown(600);
     mostRecent = playable[0];
     currentPlayer = !currentPlayer;
     UI.changeTurn();
@@ -17,7 +16,6 @@ var App = {
 
   dropPieceBlack: function() {
     $(playable[0]).addClass('black');
-    $(playable[0]).slideDown();
     mostRecent = playable[0];
     currentPlayer = !currentPlayer;
     UI.changeTurn();
